@@ -14,11 +14,11 @@
     - [] Valor mínimo y máximo del número de vulnerabilidades detectadas
 
 - [] Agrupaciones
-    - [] Prioridad de alerta
+    - [x] Prioridad de alerta
         - 1: Grave
         - 2: Media
         - 3: Baja
-    - [] Fecha
+    - [x] Fecha
         - Rango 1: Mes Julio
         - Rango 2: Mes Agosto
 
