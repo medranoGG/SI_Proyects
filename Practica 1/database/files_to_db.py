@@ -76,7 +76,7 @@ alerts.to_sql('alerts', conn, if_exists='append', index = False)
 #JSON
 print("Started reading the json file")
 
-with open('devices.json') as d:
+with open('dump/devices.json') as d:
     devices = json.load(d)
 
 for device in devices:
