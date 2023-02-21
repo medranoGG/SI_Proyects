@@ -1,2 +1,3 @@
 # SI_Proyects
-Proyectos y tal
+
+## PRÁCTICA 1: Recopilación, estructuración y análisis de datos
