@@ -10,3 +10,30 @@
 Para la creación y el volcado en la base de datos, hemos creado un archivo en python llamado [files_to_db.py](./database/files_to_db.py).
 En este, mediante los imports de *sqlite3*, *pandas* y *json* hemos volcado la información de los archivos dentro de nuestra base de datos "base.db"
 
+## DATAFRAMES
+
+Para la creación de los dataframes hemos utilizado la lib **pandas**. 
+Todos los dataframes se pueden encontrar en [Dataframes](./src/Dataframes/).
+
+### FUNCIONES RELEVANTES UTILIZADAS
+
+Hemos necesitado utilizad diversas funciones, algunas de las más relevantes son:
+- *pd.read_sql_query()*
+- *Dataframe.shape[]*
+- *Dataframe.apply(lambda x: eval(x) if x != None else [])* Porque uno de los valores "None" no se cuenta como entero
+- *.mean()*
+- *.std()*
+- *Dataframe.drop()*
+- *Dataframe.rename()*
+- *Dataframe.fillna()*
+- *pd.merge()*
+
+Entre otras
+
+## AGRUPACIONES
+
+Para realizar las agrupaciones hemos utilizado de nuevo la lib **pandas**
+Todas las agrupaciones se pueden encontrar en [Agrupaciones](./src/Agrupaciones/)
+
+Las agrupaciones han sido más sencillas puesto que se podía hacer la selección desde las propias consultas SQL
+

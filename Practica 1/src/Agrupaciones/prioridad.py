@@ -17,11 +17,12 @@ df_prioridad_2 = pd.read_sql_query(query_dataframe_prioridad_2, conn)
 df_prioridad_3 = pd.read_sql_query(query_dataframe_prioridad_3, conn)
 
 # Print the dataframes
-print("Printing higher priority alerts")
+print("\n")
+print("Alteras de mayor prioridad")
 print(df_prioridad_1)
-print("Printing medium priority alerts")
+print("Alertas de media prioridad")
 print(df_prioridad_2)
-print("Printing low priority alerts")
+print("Alertas de baja prioridad")
 print(df_prioridad_3)
 
 # Close database connection

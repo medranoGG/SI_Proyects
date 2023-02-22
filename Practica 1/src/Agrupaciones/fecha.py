@@ -14,9 +14,12 @@ df['timestamp'] = pd.to_datetime(df['timestamp'])
 july_df = df[df['timestamp'].dt.month == 7]
 august_df = df[df['timestamp'].dt.month == 8]
 
-print("Printing alerts recieved on July")
+# Print the results
+print("\n")
+print("Alertas recibidas en Julio")
 print(july_df)
-print("Printing alerts recieved on August")
+print("\n")
+print("Alertas recibidas en Agosto")
 print(august_df)
 
 # Close database connection

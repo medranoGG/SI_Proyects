@@ -4,14 +4,14 @@
     - [x] Export CSV
     - [x] Export JSON
 
-- [] Dataframes
-    - [] Número de dispositivos y missing
-    - [] Número de alertas
-    - [] Media y desviación estándar del total de puertos abiertos
-    - [] Media y desviación estándar del número de servicios inseguros detectados
-    - [] Media y desviación estándar del número de vulnerabilidades detectadas
-    - [] Valor mínimo y máximo del total de puertos abiertos
-    - [] Valor mínimo y máximo del número de vulnerabilidades detectadas
+- [x] Dataframes
+    - [x] Número de dispositivos y missing
+    - [x] Número de alertas
+    - [x] Media y desviación estándar del total de puertos abiertos
+    - [x] Media y desviación estándar del número de servicios inseguros detectados
+    - [x] Media y desviación estándar del número de vulnerabilidades detectadas
+    - [x] Valor mínimo y máximo del total de puertos abiertos
+    - [x] Valor mínimo y máximo del número de vulnerabilidades detectadas
 
 - [] Agrupaciones
     - [x] Prioridad de alerta
