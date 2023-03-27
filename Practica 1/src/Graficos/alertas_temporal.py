@@ -20,6 +20,8 @@ df_alerts = df_alerts.set_index('timestamp')
 # Group x day and count
 alerts_per_day = df_alerts['prioridad'].resample('D').count()
 
+print(alerts_per_day)
+
 # Create a graph
 plt.plot(alerts_per_day.index, alerts_per_day.values, color='black')
 plt.xlabel('Fecha')

@@ -15,7 +15,7 @@ num_rows = df_devices.shape[0]
 
 # Print the row numbers
 print("\n")
-print("Número total de dispositivos")
+print("Número total de dispositivos:")
 print(num_rows)
 
 # Close database connection
