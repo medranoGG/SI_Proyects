@@ -2,7 +2,7 @@ import pandas as pd
 import sqlite3
 
 # Connect to the SQLite3 database file
-conn = sqlite3.connect('../../database/base.db')
+conn = sqlite3.connect('database/base.db')
 
 # Querys to "devices" table
 query_alerts = 'SELECT sid FROM alerts'
