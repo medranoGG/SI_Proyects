@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="col-lg-5 mb-lg-0 mb-4">
+    <div class="card z-index-2">
+      <div class="card-body p-3">
+        <h6>SELECCIONE EL PDF DE LA MÉTRICA A DESCARGAR</h6>
+        <form method="POST" action="/download/pdf" name="form-devices">
+          <input type="hidden" name="ip-count" value="10">
+          <select name="grafico" id="grafico" style="background-color: #6670bb; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
+            <option value="alertas_temporal">Gráfico Alertas Temporales</option>
+            <option value="alerts_type">Gráfico Tipo Alertas</option>
+            <option value="most_vulned">Gráfico Dispositivos vulnerables</option>
+            <option value="puertos_vulns">Gráfico puertos vulnerables</option>
+            <option value="top">Gráfico IPs problemáticas</option>
+            
+          </select>
+        
+          <button type="submit" class="fa fa-cog fixed-plugin-button-nav cursor-pointer" style="background-color: #b10c90; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;"></button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

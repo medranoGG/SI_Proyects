@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  cmi:
+    container_name: CMI
+    restart: always
+    build: .
+    volumes:
+      - ./apps:/apps
+      - ./tratamiento:/tratamiento
+    networks:
+      - db_network
+      - web_network
+  nginx:
+    container_name: nginx
+    restart: always
+    image: "nginx:latest"
+    ports:
+      - "5085:5085"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - web_network
+    depends_on: 
+      - cmi
+networks:
+  db_network:
+    driver: bridge
+  web_network:
+    driver: bridge
+ 
