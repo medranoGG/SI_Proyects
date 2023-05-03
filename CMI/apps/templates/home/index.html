@@ -13,7 +13,6 @@
   <script src="/apps/templates/home/pdf.js"></script>
 </head>
 <div id="content">
-  <button id="pdfButton"><b>Click here to Generate PDF</b></button>
   <div class="row mt-4">
     <div class="col-lg-5 mb-lg-0 mb-4">
       <div class="card z-index-2">
@@ -26,6 +25,7 @@
           </div>
           <form method="POST" action="/index" name="form-IP">
             <input type="hidden" name="device-type" value="0">
+            <input type="hidden" name="vuln-number" value="10">
             <label for="ip-count" >Number of IPs:</label>
             <input type="number" name="ip-count" id="ip-count" min="1" max="1000" value="10" style="color: white;" >
             <button type="submit" class="fa fa-cog fixed-plugin-button-nav cursor-pointer" style="background-color: #b10c90; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;" ></button>
@@ -37,14 +37,15 @@
     <div class="col-lg-5 mb-lg-0 mb-4">
       <div class="card z-index-2">
         <div class="card-body p-3">
-          <h6>DISPOSITIVOS MÁS VULNERABLES</h6>
+          <h6>DISPOSITIVOS MÁS PELIGROSOS</h6>
           <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
             <div class="chart">
-              <canvas id="chart-vulned" class="chart-canvas" height="170"></canvas>
+              <canvas id="chart-danger" class="chart-canvas" height="170"></canvas>
             </div>
           </div>
           <form method="POST" action="/index" name="form-devices">
             <input type="hidden" name="ip-count" value="10">
+            <input type="hidden" name="vuln-number" value="10">
             <label for="device-type">Device Type:</label>
             <select name="device-type" id="device-type" style="background-color: #6670bb; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
               <option value="0">Insecure</option>
@@ -53,23 +54,32 @@
           
             <button type="submit" class="fa fa-cog fixed-plugin-button-nav cursor-pointer" style="background-color: #b10c90; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;"></button>
           </form>
-          <div id="data_vulned" style="display:none;">{{ most_vulned }}</div>
+          <div id="data_danger" style="display:none;">{{ most_dangerous }}</div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-lg-5 mb-lg-0 mb-4">
+      <div class="card z-index-2">
+        <div class="card-body p-3">
+          <h6>DISPOSITIVOS MÁS VULNERABLES</h6>
+          <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
+            <div class="chart">
+              <canvas id="chart-vuln" class="chart-canvas" height="170"></canvas>
+            </div>
+          </div>
+          <form method="POST" action="/index" name="form-IP">
+            <input type="hidden" name="ip-count" value="10">
+            <input type="hidden" name="device-type" value="0">
+            <label for="vuln-number" >Number of devices:</label>
+            <input type="number" name="vuln-number" id="vuln-number" min="1" max="1000" value="10" style="color: white;" >
+            <button type="submit" class="fa fa-cog fixed-plugin-button-nav cursor-pointer" style="background-color: #b10c90; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;" ></button>
+          </form>
+          <div id="data_vuln"  style="display:none;">{{ most_vulned }}</div>
         </div>
       </div>
     </div>
-     <script>
-        var button = document.getElementById("pdfButton");
-        var makepdf = document.getElementById("content");
-        button.addEventListener("click", function () {
-           var mywindow = window.open("", "PRINT", "height=600,width=600");
-           mywindow.document.write(makepdf.innerHTML);
-           mywindow.document.close();
-           mywindow.focus();
-           mywindow.print();
-           return true;
-        });
-     </script>
-
+    
     </div>
     
         {% include "includes/footer.html" %}
@@ -140,13 +150,68 @@
         },
       },
     });
-    var ctx2 = document.getElementById("chart-vulned").getContext("2d");
-    console.log(document.getElementById("data_vulned"))
-    var chart_data_vulned = JSON.parse(document.getElementById("data_vulned").textContent);
+    var ctx2 = document.getElementById("chart-danger").getContext("2d");
+    console.log(document.getElementById("data_danger"))
+    var chart_data_vulned = JSON.parse(document.getElementById("data_danger").textContent);
     console.log(chart_data_vulned)
     new Chart(ctx2, {
       type: "bar",
       data: chart_data_vulned
+      ,options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+            },
+            ticks: {
+              suggestedMin: 0,
+              suggestedMax: 500,
+              beginAtZero: true,
+              padding: 15,
+              font: {
+                size: 14,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+              color: "white"
+            },
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false
+            },
+            ticks: {
+              display: false
+            },
+          },
+        },
+      },
+    });
+    var ctx3 = document.getElementById("chart-vuln").getContext("2d");
+    console.log(document.getElementById("data_vuln"))
+    var chart_data = JSON.parse(document.getElementById("data_vuln").textContent);
+    console.log(chart_data)
+    new Chart(ctx3, {
+      type: "bar",
+      data: chart_data
       ,options: {
         responsive: true,
         maintainAspectRatio: false,

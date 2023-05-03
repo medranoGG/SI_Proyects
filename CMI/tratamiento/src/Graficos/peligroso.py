@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import sqlite3
 import json
 
-def get_most_vulned(code):
+def get_most_dangerous(code):
     # Connect to the SQLite3 database file
     conn = sqlite3.connect('/tratamiento/database/base.db')
 
@@ -58,5 +58,3 @@ def get_most_vulned(code):
     print(chart_json)
 
     return chart_json
-
-get_most_vulned(0)

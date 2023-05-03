@@ -11,7 +11,9 @@ from jinja2 import TemplateNotFound
 import requests
 from apps.config import API_GENERATOR
 from tratamiento.src.Graficos.top_ips import get_top_ips
-from tratamiento.src.Graficos.peligroso import get_most_vulned
+from tratamiento.src.Graficos.peligroso import get_most_dangerous
+from tratamiento.src.Graficos.most_vulned_devices import get_most_vulned
+
 import json
 
 # PDF IMPORTS
@@ -30,17 +32,21 @@ def index():
 
     number_ips_default = 10
     code_device_default = 0
+    default_vulned = 10
 
     if request.method == 'POST':
         number = request.form.get('ip-count', type = int)
         code_device = request.form.get('device-type', type = int) 
+        vulned_num = request.form.get('vuln-number', type = int)
         chart_data_ips = get_top_ips(number)
-        chart_data_dispo = get_most_vulned(code_device)
+        chart_data_dispo = get_most_dangerous(code_device)
+        chart_data_vulned = get_most_vulned(vulned_num)
     else:
         chart_data_ips = get_top_ips(number_ips_default)
-        chart_data_dispo = get_most_vulned(code_device_default)
+        chart_data_dispo = get_most_dangerous(code_device_default)
+        chart_data_vulned = get_most_vulned(default_vulned)
     
-    index = render_template('home/index.html', segment='index', API_GENERATOR=len(API_GENERATOR), chart_data=chart_data_ips, most_vulned=chart_data_dispo)
+    index = render_template('home/index.html', segment='index', API_GENERATOR=len(API_GENERATOR), chart_data=chart_data_ips, most_dangerous=chart_data_dispo, most_vulned = chart_data_vulned)
 
 
     return index
@@ -90,20 +96,15 @@ def CVE():
     response = requests.get('https://cve.circl.lu/api/last')
 
     if response.status_code == 200:
-        # Analizar la respuesta JSON de la API para obtener la información de las vulnerabilidades
-        vulnerabilities = response.json()[:10]  # Obtener las primeras 10 vulnerabilidades
-        # Note: here we access the entire list returned by the API, hence there is no key specified
-
-        # Do something with the vulnerabilities list here
+        vulnerabilities = response.json()[:10]  
+      
         print(vulnerabilities)
     else:
-        # Si hay un error al hacer la solicitud, muestra un mensaje de error
         vulnerabilities = [{'error': 'Error al obtener las vulnerabilidades'}]
         print(vulnerabilities)
     
     data = json.dumps(vulnerabilities)
 
-    # Render the template with the JSON data
     return render_template('home/cve.html', data=data)
 
 

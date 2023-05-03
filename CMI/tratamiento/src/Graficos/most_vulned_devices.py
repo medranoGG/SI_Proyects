@@ -42,5 +42,3 @@ def get_most_vulned(number):
     print(chart_json)
 
     return chart_json
-
-get_most_vulned(2)
