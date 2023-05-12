@@ -57,11 +57,16 @@ if __name__ == '__main__':
                          filled=True, rounded=True,
                         special_characters=True)
     graph = graphviz.Source(dot_data)
-    graph.view()
-    print(graph)
+    #graph.view()
 
     Yp, devices_id = predecir_datos(jsonPred,clf,Xp)
+
+    peligrosos = []
+    for i in range(len(Yp)):
+        if Yp[i] == 1:
+            peligrosos.append(devices_id[i])
+
     print(Yp)
-    print(devices_id)
+    print(peligrosos)
 
 
