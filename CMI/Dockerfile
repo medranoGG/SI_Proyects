@@ -18,6 +18,7 @@ RUN pip install pandas
 RUN pip install db-sqlite3
 RUN pip install matplotlib
 RUN pip install pdfkit
+#RUN pip install graphviz
 
 COPY env.sample .env
 
