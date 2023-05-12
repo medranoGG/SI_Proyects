@@ -16,7 +16,7 @@
   <div class="row mt-4">
 
     <hr>
-    <h4>|-> IPs</h4>
+    <h4>|-> Regresión Lineal</h4>
     <hr>
 
     <div class="col-lg-5 mb-lg-0 mb-4">
@@ -33,7 +33,7 @@
             <input type="hidden" name="vuln-number" value="10">
             <label for="ip-count" >Number of IPs:</label>
             <input type="number" name="ip-count" id="ip-count" min="1" max="1000" value="10" style="color: white;" >
-            <button type="submit" class="fa fa-sharp fa-light fa-paper-plane fixed-plugin-button-nav cursor-pointer" style="background-color: #b10c90; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;"></button>
+            <button type="submit" class="fa fa-cog fixed-plugin-button-nav cursor-pointer" style="background-color: #b10c90; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;" ></button>
           </form>
           <div id="data_ips"  style="display:none;">{{ chart_data }}</div>
         </div>
@@ -41,7 +41,7 @@
     </div>
 
     <hr>
-    <h4>|-> Dispositivos</h4>
+    <h4>|-> Decision Tree</h4>
     <hr>
 
     <div class="col-lg-5 mb-lg-0 mb-4">
@@ -61,52 +61,16 @@
               <option value="0">Insecure</option>
               <option value="1">Secure</option>
             </select>
-            <button type="submit" class="fa fa-sharp fa-light fa-paper-plane fixed-plugin-button-nav cursor-pointer" style="background-color: #b10c90; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;"></button>
+
+            <button type="submit" class="fa fa-cog fixed-plugin-button-nav cursor-pointer" style="background-color: #b10c90; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;"></button>
           </form>
           <div id="data_danger" style="display:none;">{{ most_dangerous }}</div>
         </div>
       </div>
     </div>
 
-    <div class="col-lg-5 mb-lg-0 mb-4">
-      <div class="card z-index-2">
-        <div class="card-body p-3">
-          <h6>DISPOSITIVOS MÁS VULNERABLES</h6>
-          <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
-            <div class="chart">
-              <canvas id="chart-vuln" class="chart-canvas" height="150"></canvas>
-            </div>
-          </div>
-          <form method="POST" action="/index" name="form-IP">
-            <input type="hidden" name="ip-count" value="10">
-            <input type="hidden" name="device-type" value="0">
-            <label for="vuln-number" >Number of devices:</label>
-            <input type="number" name="vuln-number" id="vuln-number" min="1" max="7" value="7" style="color: white;" >
-            <button type="submit" class="fa fa-sharp fa-light fa-paper-plane fixed-plugin-button-nav cursor-pointer" style="background-color: #b10c90; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;"></button>
-          </form>
-          <div id="data_vuln"  style="display:none;">{{ most_vulned }}</div>
-        </div>
-      </div>
-    </div>
-
     <hr>
-    <h4>|-> Fechas</h4>
-    <hr>
-    
-    <div class="col-lg-5 mb-lg-0 mb-4">
-      <div class="card z-index-2">
-        <div class="card-body p-3">
-          <h6>ALERTAS EN FUNCION DE FECHA ANTERIOR</h6>
-          <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
-            <div class="chart">
-              <canvas id="chart-date0" class="chart-canvas" height="150"></canvas>
-            </div>
-          </div>
-          <div id="data_date0" style="display:none;">{{ chart_alerts_previous }}</div>
-        </div>
-      </div>
-    </div>
-    
+    <h4>|-> Random Forest</h4>
     <hr>
 
     <div class="col-lg-5 mb-lg-0 mb-4">
@@ -115,39 +79,47 @@
           <h6>ALERTAS EN FUNCION DE FECHA</h6>
           <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
             <div class="chart">
-              <canvas id="chart-date" class="chart-canvas" height="150" width = "10"></canvas>
+              <canvas id="chart-date" class="chart-canvas" height="150"></canvas>
             </div>
           </div>
           <form method="POST" action="/index" name="form-devices">
             <input type="hidden" name="ip-count" value="10">
             <input type="hidden" name="vuln-number" value="10">
-            <label for="date-d">Ingrese la fecha:</label>
-            <input type="date" id="date-d" name="date-d">
-            <button type="submit" class="fa fa-sharp fa-light fa-paper-plane fixed-plugin-button-nav cursor-pointer" style="background-color: #b10c90; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;"></button>
+            <label for="date-alert">Ingrese la fecha:</label>
+            <input type="date" id="date-alert" name="date-d">
+            <button type="submit" class="fa fa-cog fixed-plugin-button-nav cursor-pointer" style="background-color: #b10c90; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;"></button>
           </form>
           <div id="data_date" style="display:none;">{{ chart_alerts }}</div>
         </div>
       </div>
     </div>
-
-    <hr>
-
-    <div class="col-lg-5 mb-lg-0 mb-4">
-      <div class="card z-index-2">
-        <div class="card-body p-3">
-          <h6>ALERTAS EN FUNCION DE FECHA POSTERIOR</h6>
-          <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
-            <div class="chart">
-              <canvas id="chart-date2" class="chart-canvas" height="150"></canvas>
+      <!--
+      <div class="col-lg-5 mb-lg-0 mb-4">
+        <div class="card z-index-2">
+          <div class="card-body p-3">
+            <h6>fechas</h6>
+            <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
+              <div class="chart">
+                <canvas id="chart-ddd" class="chart-canvas" height="150"></canvas>
+              </div>
             </div>
+            <form method="POST" action="/index" name="form-IP">
+              <input type="hidden" name="ip-count" value="10">
+              <input type="hidden" name="device-type" value="0">
+              <label for="date-d" >Number of devices:</label>
+              <!--<input type="date" id="date-d" name="date-d">
+              <input type="number" name="ddd" id="ddd" min="1" max="10" value="1" style="color: white;" >
+              <button type="submit" class="fa fa-cog fixed-plugin-button-nav cursor-pointer" style="background-color: #b10c90; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;" ></button>
+            </form>
+            <div id="data_ddd"  style="display:none;">{{ chart_alerts }}</div>
           </div>
-          <div id="data_date2" style="display:none;">{{ chart_alerts_next }}</div>
         </div>
       </div>
+    -->
+
+
     </div>
-    
-    </div>
-    
+
         {% include "includes/footer.html" %}
 
     </div>
@@ -155,12 +127,12 @@
 </div>
 {% endblock content %}
 
-<!-- Specific JS goes HERE --> 
+<!-- Specific JS goes HERE -->
 {% block javascripts %}
 
   <script src="{{ config.ASSETS_ROOT }}/js/plugins/chartjs.min.js"></script>
   <script>
-   
+
     var ctx = document.getElementById("chart-bars").getContext("2d");
     console.log(document.getElementById("data_ips"))
     var chart_data = JSON.parse(document.getElementById("data_ips").textContent);
@@ -326,121 +298,11 @@
         },
       },
     });
-    var ctx4 = document.getElementById("chart-date0").getContext("2d");
-    console.log(document.getElementById("data_date0"))
-    var chart_data = JSON.parse(document.getElementById("data_date0").textContent);
-    console.log(chart_data)
-    new Chart(ctx4, {
-      type: "bar",
-      data: chart_data
-      ,options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-            },
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: 500,
-              beginAtZero: true,
-              padding: 15,
-              font: {
-                size: 14,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-              color: "white"
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false
-            },
-            ticks: {
-              display: false
-            },
-          },
-        },
-      },
-    });
-    var ctx5 = document.getElementById("chart-date").getContext("2d");
+    var ctx4 = document.getElementById("chart-date").getContext("2d");
     console.log(document.getElementById("data_date"))
     var chart_data = JSON.parse(document.getElementById("data_date").textContent);
     console.log(chart_data)
-    new Chart(ctx5, {
-      type: "bar",
-      data: chart_data
-      ,options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-            },
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: 500,
-              beginAtZero: true,
-              padding: 15,
-              font: {
-                size: 14,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-              color: "white"
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false
-            },
-            ticks: {
-              display: false
-            },
-          },
-        },
-      },
-    });
-    var ctx6 = document.getElementById("chart-date2").getContext("2d");
-    console.log(document.getElementById("data_date2"))
-    var chart_data = JSON.parse(document.getElementById("data_date2").textContent);
-    console.log(chart_data)
-    new Chart(ctx6, {
+    new Chart(ctx4, {
       type: "bar",
       data: chart_data
       ,options: {
