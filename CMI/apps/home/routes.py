@@ -107,6 +107,33 @@ def CVE():
 
     return render_template('home/cve.html', data=data)
 
+@blueprint.route('/apiconsulta',methods=['POST'])
+@login_required
+def apiconsulta():
+    
+    
+    ip=request.form['ip']
+    peticion="http://ipwho.is/"
+    peticion=peticion+ip
+    response= requests.get(peticion)
+    if response.status_code == 200:
+        localizacion = response.json() 
+      
+        print(localizacion)
+    else:
+        localizacion = [{'error': 'Error al obtener la ip'}]
+        print(localizacion)
+    
+    data = json.dumps(localizacion)
+
+    return render_template('home/cve.html', data=data)
+
+@blueprint.route('/apicheck')
+@login_required
+def apicheck():
+
+    # Render the template with the JSON data
+    return render_template('home/api.html')
 
 @blueprint.route('/download')
 @login_required
