@@ -44,10 +44,9 @@ if __name__ == '__main__':
 
     # Load data
     cargar_datos_entrenamiento(jsonTrain, Xt, yt)
-    clf = RandomForestClassifier(max_depth=2, random_state=0,n_estimators=5)
+    clf = RandomForestClassifier(max_depth=2, random_state=0,n_estimators=10)
     clf.fit(Xt, yt)
-    print(str(Xt[0]) + " " + str(yt[0]))
-    print(clf.predict([Xt[0]]))
+    print(clf.predict(Xt))
 
     for i in range(len(clf.estimators_)):
         print(i)
