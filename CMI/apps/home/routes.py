@@ -187,13 +187,13 @@ def PDF():
         pdf_buffer = tipo_alerta()
         return send_file(pdf_buffer, mimetype='application/pdf', as_attachment=True, attachment_filename='type_alerts.pdf')
     if grafico == "most_vulned":
-        pdf_buffer = most_vulned()
+        pdf_buffer = most_vulned(10)
         return send_file(pdf_buffer, mimetype='application/pdf', as_attachment=True, attachment_filename='vulnerable_devices.pdf')
     if grafico == "puertos_vulns":
         pdf_buffer = puertos_vulns()
         return send_file(pdf_buffer, mimetype='application/pdf', as_attachment=True, attachment_filename='vulnerable_ports.pdf')
     if grafico == "top":
-        pdf_buffer = top_ips()
+        pdf_buffer = top_ips(10)
         return send_file(pdf_buffer, mimetype='application/pdf', as_attachment=True, attachment_filename='vulnerable_ips.pdf')
     
     
