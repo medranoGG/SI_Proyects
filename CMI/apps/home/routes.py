@@ -4,7 +4,7 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 # GENERAL IMPORTS
-import datetime
+from datetime import datetime,timedelta
 from apps.home import blueprint
 from flask import Flask, render_template, request, send_file
 from flask_login import login_required
@@ -51,18 +51,18 @@ def index():
         chart_data_vulned = get_most_vulned(vulned_num)
         chart_alerts_date = get_alertas_temporal(date_vuln)
 
-    
+
         date_prev = "2022-07-03"
         date_next = "2022-07-05"
-        """
+        
         date_obj = datetime.strptime(date_vuln, "%Y-%m-%d")
 
-        prev_day_obj = date_obj - datetime.timedelta(days=1)
+        prev_day_obj = date_obj - timedelta(days=1)
         date_prev = prev_day_obj.strftime("%Y-%m-%d")
 
-        next_day_obj = date_obj + datetime.timedelta(days=1)
+        next_day_obj = date_obj + timedelta(days=1)
         date_next = next_day_obj.strftime("%Y-%m-%d")
-        """
+        
 
         chart_alerts_date_prev = get_alertas_temporal_prev(date_prev)
         chart_alerts_date_next = get_alertas_temporal_next(date_next)
